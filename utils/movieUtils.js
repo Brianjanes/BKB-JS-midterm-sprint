@@ -7,7 +7,7 @@ const { Movies, Genres } = require("./data");
  * @returns {Array.<Movies>} - An array of movies matching the genre
  */
 function getMoviesByGenre(genre, x) {
-    // Implementation here
+  // Implementation here
 }
 
 /**
@@ -16,7 +16,7 @@ function getMoviesByGenre(genre, x) {
  * @returns {Array.<Movies>} - An array of top-rated movies
  */
 function getTopRatedMovies(x) {
-    // Implementation here
+  // Implementation here
 }
 
 /**
@@ -25,7 +25,12 @@ function getTopRatedMovies(x) {
  * @returns {Movies} - The movie object
  */
 function getMovieDetailsById(id) {
-    // Implementation here
+  const movie = Movies.find((movie) => movie.id === id);
+  if (!movie) {
+    // Change this from (!id) to (!movie)
+    throw new Error("Movie not found");
+  }
+  return movie;
 }
 
 /**
@@ -33,13 +38,14 @@ function getMovieDetailsById(id) {
  * @returns {number} - A random movie ID
  */
 function selectRandomMovieId() {
-    // Implementation here
+  const randomIndex = Math.floor(Math.random() * Movies.length);
+  return Movies[randomIndex].id;
 }
 
 // Export the functions to be used in other modules
 module.exports = {
-    getMoviesByGenre,
-    getTopRatedMovies,
-    getMovieDetailsById,
-    selectRandomMovieId,
+  getMoviesByGenre,
+  getTopRatedMovies,
+  getMovieDetailsById,
+  selectRandomMovieId,
 };

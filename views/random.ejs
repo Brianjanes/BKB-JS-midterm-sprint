@@ -1,12 +1,17 @@
 <html lang="en">
   <head>
-    <title>Movie Gallery</title>
+    <title>Random Movie</title>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
   </head>
   <body>
     <%- include('partials/header') %>
     <main class="main-content">
-      <h1>Movie Gallery</h1>
+      <% if (movie) { %>
+      <p>ID: <%= movie.id %></p>
+      <p>Title: <%= movie.title %></p>
+      <% } else { %>
+      <p>No movie found</p>
+      <% } %>
     </main>
   </body>
 </html>
