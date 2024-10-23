@@ -41,13 +41,19 @@ app.get("/random", (request, response) => {
     const randomMovieID = selectRandomMovieId();
     const movie = getMovieDetailsById(randomMovieID);
     console.log("Random Movie:", movie);
-    return response.render("random", { movie: movie }); // Fixed the variable name
+    return response.render("random", { movie: movie });
   } catch (error) {
     console.error("Error:", error);
     response.status(500).json({
       message: "Internal server error",
     });
   }
+});
+
+app.get("/top-rated", (request, response) => {
+  const topRatedMovies = getTopRatedMovies(5);
+  console.log("Top Rated Movies:", topRatedMovies);
+  response.render("top-rated", { movies: topRatedMovies });
 });
 
 // POST ROUTES

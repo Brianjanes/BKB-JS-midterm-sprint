@@ -1,4 +1,9 @@
 /* Base styling, feel free to remove or alter */
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background: linear-gradient(
@@ -7,13 +12,17 @@ body {
     rgba(93, 142, 251, 1) 50%,
     rgba(0, 212, 255, 1) 100%
   );
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
   font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: column;
-  color: #f6f6f6;
+  color: yellow;
+}
+
+a {
+  color: yellow;
 }
 
 .main-content {
@@ -22,20 +31,43 @@ body {
   flex: 1;
   align-items: center;
   flex-direction: column;
+  padding: 2rem 0;
+  /* viewport height less the header (88px) and footer (100px) heights */
+  min-height: calc(100vh - 188px);
 }
 
 .main-content h1 {
   font-size: 50px;
 }
 
+a {
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transform-origin: center;
+}
+
+a:hover {
+  color: white;
+  opacity: 0.8;
+  font-weight: bolder;
+  transition: ease-in-out 0.3s;
+  transform: scale(1.1);
+}
+
+/* Header styles */
 header {
+  background-color: navy;
+  position: sticky;
+  top: 0;
   max-width: 100dvw;
   width: 100%;
   height: 88px;
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid yellow;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .header-inner-div {
@@ -52,19 +84,55 @@ header span {
   font-weight: bolder;
   margin-left: 1rem;
 }
+
 header .link-div {
   display: flex;
   gap: 1rem;
 }
 
-header a {
-  font-size: 1rem;
-  text-decoration: none;
-  font-weight: bolder;
-  color: whitesmoke;
+/* Footer styles */
+footer {
+  position: sticky;
+  bottom: 0;
+  max-width: 100dvw;
+  width: 100%;
+  height: 100px;
+  background-color: navy;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
 }
 
-header a:hover {
-  transform: scale(1.1);
-  transition: ease-in-out 0.5s;
+.inner-footer-div {
+  width: calc(100% - 6rem);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.student-links {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.student-links span {
+  text-decoration: underline;
+}
+
+.git-links span {
+  text-decoration: none;
+  margin-inline: 1rem;
+}
+
+.left-side {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
