@@ -5,8 +5,25 @@
   </head>
   <body>
     <%- include('partials/header') %>
-    <main class="main-content">
-      <h1>Movie Gallery36</h1>
+    <main class="homepage-container">
+      <h1>Movie Gallery</h1>
+      <div class="featured-movies-container">
+        <% movies.forEach(movie => { %>
+        <a href="/movie/<%= movie.id %>" class="featured-movie-link">
+          <div class="featured-movie-wrapper">
+            <h2 class="featured-movie-title"><%= movie.title %></h2>
+            <div class="featured-movie-metadata">
+              <span class="featured-movie-year"><%= movie.releaseYear %></span>
+              <% if (movie.rating) { %>
+              <span class="featured-movie-score"
+                >★ <%= movie.rating.toFixed(1) %>/10</span
+              >
+              <% } %>
+            </div>
+          </div>
+        </a>
+        <% }); %>
+      </div>
     </main>
     <%- include('partials/footer') %>
   </body>
