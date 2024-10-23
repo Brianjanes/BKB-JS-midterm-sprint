@@ -8,6 +8,15 @@ const { Movies, Genres } = require("./data");
  */
 function getMoviesByGenre(genre, x) {
   // Implementation here
+  if ((x = 0)) {
+    return [];
+  } else if (x < 0) {
+    const moviesByGenre = Movies.filter((movie) => movie.genre === genre).slice(
+      0,
+      x
+    );
+    return moviesByGenre;
+  }
 }
 
 /**
@@ -17,6 +26,8 @@ function getMoviesByGenre(genre, x) {
  */
 function getTopRatedMovies(x) {
   // Implementation here
+  const topRatedMovies = Movies.sort((a, b) => b.rating - a.rating).slice(0, x);
+  return topRatedMovies;
 }
 
 /**
@@ -27,7 +38,6 @@ function getTopRatedMovies(x) {
 function getMovieDetailsById(id) {
   const movie = Movies.find((movie) => movie.id === id);
   if (!movie) {
-    // Change this from (!id) to (!movie)
     throw new Error("Movie not found");
   }
   return movie;
