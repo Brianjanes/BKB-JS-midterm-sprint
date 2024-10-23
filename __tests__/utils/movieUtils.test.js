@@ -1,4 +1,11 @@
-const { getRandomMoviesByGenre, getTopRatedMovies, formatMovieData, getRandomGenre, generateMovieReport } = require("../../utils/movieUtils");
+const { 
+    getMoviesByGenre, 
+    getTopRatedMovies, 
+    getMovieDetailsById, 
+    selectRandomMovieId 
+} = require("../../utils/movieUtils");
+
+const { Movies, Genres } = require("../../data");
 
 describe('Movie Utility Functions', () => {
     describe('getMoviesByGenre', () => {
@@ -53,13 +60,33 @@ describe('Movie Utility Functions', () => {
     });
 
     describe('getMovieDetailsById', () => {
-        
+        it('should return correct movie details for valid ID', () => {
+            const testMovie = Movies[0];
+            const result = getMovieDetailsById(testMovie.id);
+            
+            expect(result).toEqual(testMovie);
+        });
+
+        it('should throw error for non-existent movie ID', () => {
+            expect(() => {
+                getMovieDetailsById(99999);
+            }).toThrow('Movie not found');
+        });
+
+        it('should return movie with all required properties', () => {
+            const result = getMovieDetailsById(Movies[0].id);
+            expect(result).toHaveProperty('id');
+            expect(result).toHaveProperty('title');
+            expect(result).toHaveProperty('rating');
+            expect(result).toHaveProperty('genres');
+        });
     });
 
     describe('selectRandomMovieId', () => {
-
+        it('should return a valid movie ID', () => {
+            const result = selectRandomMovieId();
+            const movieIds = Movies.map(movie => movie.id);
+            expect(movieIds).toContain(result);
+        });
     });
 });
-
-
-getRandomMoviesByGenre
