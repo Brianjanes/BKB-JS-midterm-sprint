@@ -14,11 +14,6 @@
             <h2 class="featured-movie-title"><%= movie.title %></h2>
             <div class="featured-movie-metadata">
               <span class="featured-movie-year"><%= movie.releaseYear %></span>
-              <% if (movie.rating) { %>
-              <span class="featured-movie-score"
-                >★ <%= movie.rating.toFixed(1) %>/10</span
-              >
-              <% } %>
             </div>
           </div>
         </a>

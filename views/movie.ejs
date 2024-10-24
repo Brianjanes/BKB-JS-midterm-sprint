@@ -6,9 +6,51 @@
   <body>
     <%- include('partials/header') %>
     <main class="main-content">
-      <h1>
-        <p><%= movie %></p>
-      </h1>
+      <main class="main-content">
+      <% if (movie) { %>
+      <div class="movie-card">
+        <div class="inner-movie-card">
+          <div class="movie-card-top">
+            <div class="movie-info">
+              <span class="static-info">Title:</span>
+              <%= movie.title %>
+            </div>
+            <div class="movie-info">
+              <span class="static-info">Release Year:</span>
+              <%= movie.releaseYear %>
+            </div>
+
+            <div class="movie-info">
+              <span class="static-info">Genre:</span>
+
+              <a href="/<%= movie.genre %>" target="_blank"
+                ><%= movie.genre %></a
+              >
+            </div>
+            <div class="movie-info">
+              <span class="static-info">Director:</span>
+              <%= movie.director %>
+            </div>
+          </div>
+
+          <div class="movie-card-bottom">
+            <div class="rating-div">
+              <% if (movie.rating) { %>
+              <span class="movie-info featured-movie-score"
+                >★ <%= movie.rating.toFixed(1) %> / 10</span
+              >
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% } else { %>
+      <div class="movie-card">
+        <p>No movie found</p>
+      </div>
+
+      <% } %>
     </main>
   </body>
 </html>
