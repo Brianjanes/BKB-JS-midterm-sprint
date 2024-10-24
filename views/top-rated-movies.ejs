@@ -5,45 +5,24 @@
   </head>
   <body>
     <%- include('partials/header') %>
-    <main class="main-content">
-      <% if (movies && movies.length > 0) { %>
+    <main class="homepage-container">
+      <h1>Top Rated Movies</h1>
+      <div class="featured-movies-container">
         <% movies.forEach(movie => { %>
-          <div class="movie-card">
-            <div class="inner-movie-card">
-              <div class="movie-card-top">
-                <div class="movie-info">
-                  <span class="static-info">Title:</span>
-                  <a href="/movie/<%= movie.id %>"><%= movie.title %></a>
-                </div>
-                <div class="movie-info">
-                  <span class="static-info">Release Year:</span>
-                  <%= movie.releaseYear %>
-                </div>
-                <div class="movie-info">
-                  <span class="static-info">Genre:</span>
-                  <a href="/<%= movie.genre %>" target="_blank"><%= movie.genre %></a>
-                </div>
-                <div class="movie-info">
-                  <span class="static-info">Description:</span>
-                  <%= movie.description %>
-                </div>
-              </div>
-
-              <div class="movie-card-bottom">
-                <div class="rating-div">
-                  <% if (movie.rating) { %>
-                    <span class="movie-info featured-movie-score">★ <%= movie.rating.toFixed(1) %> / 10</span>
-                  <% } %>
-                </div>
-              </div>
+        <a href="/movie/<%= movie.id %>" class="featured-movie-link">
+          <div class="featured-movie-wrapper">
+            <h2 class="featured-movie-title"><%= movie.title %></h2>
+            <div class="featured-movie-metadata">
+              <span class="featured-movie-year"><%= movie.releaseYear %></span>
+              <% if (movie.rating) { %>
+                <span class="featured-movie-score">★ <%= movie.rating.toFixed(1) %></span>
+              <% } %>
             </div>
           </div>
+        </a>
         <% }); %>
-      <% } else { %>
-        <div class="movie-card">
-          <p>No movies found</p>
-        </div>
-      <% } %>
+      </div>
     </main>
+    <%- include('partials/footer') %>
   </body>
 </html>
