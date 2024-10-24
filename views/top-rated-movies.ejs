@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <title>Top Rated Movies</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <main class="main-content">
+      <% if (movies && movies.length > 0) { %>
+        <% movies.forEach(movie => { %>
+          <div class="movie-card">
+            <div class="inner-movie-card">
+              <div class="movie-card-top">
+                <div class="movie-info">
+                  <span class="static-info">Title:</span>
+                  <a href="/movie/<%= movie.id %>"><%= movie.title %></a>
+                </div>
+                <div class="movie-info">
+                  <span class="static-info">Release Year:</span>
+                  <%= movie.releaseYear %>
+                </div>
+                <div class="movie-info">
+                  <span class="static-info">Genre:</span>
+                  <a href="/<%= movie.genre %>" target="_blank"><%= movie.genre %></a>
+                </div>
+                <div class="movie-info">
+                  <span class="static-info">Description:</span>
+                  <%= movie.description %>
+                </div>
+              </div>
+
+              <div class="movie-card-bottom">
+                <div class="rating-div">
+                  <% if (movie.rating) { %>
+                    <span class="movie-info featured-movie-score">★ <%= movie.rating.toFixed(1) %> / 10</span>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="movie-card">
+          <p>No movies found</p>
+        </div>
+      <% } %>
+    </main>
+  </body>
+</html>
