@@ -38,6 +38,7 @@ app.get("/movie/:id", (request, response) => {
   }
 });
 
+// route to get a random movie
 app.get("/random", (request, response) => {
   try {
     const randomMovieID = selectRandomMovieId();
@@ -52,6 +53,7 @@ app.get("/random", (request, response) => {
   }
 });
 
+// route to get top-rated movies
 app.get("/top-rated", (request, response) => {
   const topRatedMovies = getTopRatedMovies(5);
   console.log("Top Rated Movies:", topRatedMovies);
