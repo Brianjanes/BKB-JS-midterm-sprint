@@ -54,10 +54,9 @@ app.get("/random", (request, response) => {
 });
 
 // route to get top-rated movies
-app.get("/top-rated", (request, response) => {
-  const topRatedMovies = getTopRatedMovies(5);
-  console.log("Top Rated Movies:", topRatedMovies);
-  response.render("top-rated", { movies: topRatedMovies });
+app.get('/top-rated-movies', (req, res) => {
+  const topMovies = getTopRatedMovies(5);
+  res.render('top-rated-movies', { movies: topMovies });
 });
 
 // POST ROUTES
