@@ -31,9 +31,8 @@ a {
   flex: 1;
   align-items: center;
   flex-direction: column;
-  padding: 2rem 0;
   /* viewport height less the header (88px) and footer (100px) heights */
-  min-height: calc(100vh - 188px);
+  /* min-height: calc(100vh - 450px); */
 }
 
 .main-content h1 {
@@ -42,15 +41,13 @@ a {
 
 a {
   font-size: 1rem;
+  font-weight: bold;
   text-decoration: none;
-  display: inline-block;
   transform-origin: center;
 }
 
 a:hover {
-  color: white;
   opacity: 0.8;
-  font-weight: bolder;
   transition: ease-in-out 0.3s;
   transform: scale(1.1);
 }
@@ -61,7 +58,9 @@ header {
   top: 0;
   max-width: 100dvw;
   width: 100%;
-  height: 500px; /* Set a specific height for the header */
+  /* i seemed to fluke into this but looks good withno height
+   */
+  /* height: 400px; */
   border-bottom: 2px solid yellow;
   display: flex;
   flex-direction: column;
@@ -74,6 +73,7 @@ header {
   background-position: center; /* Centers the background image */
   background-repeat: no-repeat;
   background-size: cover;
+  border-bottom: 2px solid yellow;
 }
 
 .link-div {
@@ -82,17 +82,14 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem;
-  background-color: rgba(
-    93,
-    142,
-    251,
-    1
-  ); /* Optional: adds a background to the links */
+  margin-inline: 2rem;
 }
 
 .links {
+  width: 40%;
   margin-inline: 2rem;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Footer styles */
