@@ -9,14 +9,39 @@
       <h1>Movie Gallery</h1>
       <div class="featured-movies-container">
         <% movies.forEach(movie => { %>
-        <a href="/movie/<%= movie.id %>" class="featured-movie-link">
-          <div class="featured-movie-wrapper">
-            <h2 class="featured-movie-title"><%= movie.title %></h2>
-            <div class="featured-movie-metadata">
-              <span class="featured-movie-year"><%= movie.releaseYear %></span>
+        <div class="featured-movie-card">
+          <a href="/movie/<%= movie.id %>" class="featured-movie-link">
+            <div class="featured-movie-wrapper">
+              <h2 class="featured-movie-title"><%= movie.title %></h2>
+              <div class="featured-movie-metadata">
+                <span class="featured-movie-year"
+                  ><%= movie.releaseYear %></span
+                >
+                <% if (movie.rating !== null) { %>
+                <span class="featured-movie-score"
+                  >★ <%= movie.rating.toFixed(1) %>/10</span
+                >
+                <% } else { %>
+                <span class="featured-movie-unreleased">Unreleased</span>
+                <% } %>
+              </div>
+            </div>
+          </a>
+          <div class="movie-reviews">
+            <div class="review-item">
+              <p class="review-text">"Absolutely fantastic!"</p>
+              <span class="reviewer">- MovieBuff</span>
+            </div>
+            <div class="review-item">
+              <p class="review-text">"A masterpiece!"</p>
+              <span class="reviewer">- FilmCritic</span>
+            </div>
+            <div class="review-item">
+              <p class="review-text">"Must watch!"</p>
+              <span class="reviewer">- CinemaFan</span>
             </div>
           </div>
-        </a>
+        </div>
         <% }); %>
       </div>
     </main>
