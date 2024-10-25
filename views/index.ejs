@@ -28,18 +28,14 @@
             </div>
           </a>
           <div class="movie-reviews">
+            <% movie.reviews.forEach((review, index) => { %>
             <div class="review-item">
-              <p class="review-text">"Absolutely fantastic!"</p>
-              <span class="reviewer">- MovieBuff</span>
+              <p class="review-text">"<%= review %>"</p>
+              <span class="reviewer">
+                - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
+              </span>
             </div>
-            <div class="review-item">
-              <p class="review-text">"A masterpiece!"</p>
-              <span class="reviewer">- FilmCritic</span>
-            </div>
-            <div class="review-item">
-              <p class="review-text">"Must watch!"</p>
-              <span class="reviewer">- CinemaFan</span>
-            </div>
+            <% }); %>
           </div>
         </div>
         <% }); %>
