@@ -12,6 +12,14 @@
         <div class="featured-movie-card">
           <a href="/movie/<%= movie.id %>" class="featured-movie-link">
             <div class="featured-movie-wrapper">
+              <div class="movie-image-container">
+                <img
+                  src="<%= movie.image %>"
+                  alt="<%= movie.title %>"
+                  class="movie-image"
+                  onerror="this.src='/MoviePics/Gladiator.jpg'"
+                />
+              </div>
               <h2 class="featured-movie-title"><%= movie.title %></h2>
               <div class="featured-movie-metadata">
                 <span class="featured-movie-year"
