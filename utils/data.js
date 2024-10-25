@@ -27,6 +27,7 @@ const Movies = [
       "Like a perfectly cooked Italian dinner, this film has layers of excellence.",
       "The family business has never looked so compelling. Just don't ask about the day job.",
     ],
+    image: "/MoviePics/god-father.jpg",
   },
   {
     id: 2,
@@ -42,6 +43,7 @@ const Movies = [
       "Like its characters, this film operates on multiple levels.",
       "The only thing more complex than the plot is explaining it to your friends afterward.",
     ],
+    image: "/MoviePics/inception.jpg",
   },
   {
     id: 3,
@@ -57,6 +59,7 @@ const Movies = [
       "Like Batman's gadgets, every piece of this film serves a purpose.",
       "Proves that sometimes the knight is darkest before the dawn.",
     ],
+    image: "/MoviePics/the-dark-knight.jpg",
   },
   {
     id: 4,
@@ -72,6 +75,7 @@ const Movies = [
       "The performances are so good, they should be on somebody's list.",
       "Black and white cinematography, but morally anything but.",
     ],
+    image: "/MoviePics/Schindlers-List.jpg",
   },
   {
     id: 5,
@@ -87,6 +91,7 @@ const Movies = [
       "Like its timeline, this film is brilliantly out of order.",
       "The best movie to watch before or after a quarter pounder.",
     ],
+    image: "/MoviePics/Pulp-Fiction.jpg",
   },
   {
     id: 6,
@@ -102,6 +107,7 @@ const Movies = [
       "A journey so good, you'll want to walk to Mordor.",
       "Makes three hours feel like first breakfast.",
     ],
+    image: "/MoviePics/TheLordoftheRings-TheFellowshipoftheRing.jpg",
   },
   {
     id: 7,
@@ -117,6 +123,7 @@ const Movies = [
       "Run, don't walk, to see this classic.",
       "Like a box of chocolates, every scene is a sweet surprise.",
     ],
+    image: "/MoviePics/Forrest-Gump.jpg",
   },
   {
     id: 8,
@@ -132,6 +139,7 @@ const Movies = [
       "I am Jack's complete lack of criticism.",
       "Hits harder than a punch to the face.",
     ],
+    image: "/MoviePics/Fight-Club.jpg",
   },
   {
     id: 9,
@@ -147,6 +155,7 @@ const Movies = [
       "Like a black hole, it pulls you in and doesn't let go.",
       "The only thing that doesn't dilate is the audience's attention.",
     ],
+    image: "/MoviePics/Interstellar.jpg",
   },
   {
     id: 10,
@@ -162,6 +171,7 @@ const Movies = [
       "Worth its weight in laurel wreaths.",
       "The empire strikes back, but Maximus strikes harder.",
     ],
+    image: "/MoviePics/Gladiator.jpg",
   },
   {
     id: 11,
@@ -177,6 +187,7 @@ const Movies = [
       "Reality is overrated anyway.",
       "There is no spoon, but there are plenty of spectacular scenes.",
     ],
+    image: "/MoviePics/The-Matrix.jpg",
   },
   {
     id: 12,
@@ -192,6 +203,7 @@ const Movies = [
       "The opening sequence alone earns its stripes.",
       "Band of Brothers: The Preview.",
     ],
+    image: "/MoviePics/SavingPrivateRyan.jpg",
   },
   {
     id: 13,
@@ -207,6 +219,7 @@ const Movies = [
       "Like Andy's poster, this film conceals true greatness.",
       "Prison never looked so life-affirming.",
     ],
+    image: "/MoviePics/TheShawshankRedemption.jpg",
   },
   {
     id: 14,
@@ -222,6 +235,7 @@ const Movies = [
       "A basement-to-penthouse thrill ride.",
       "Rich in metaphor, richer in entertainment.",
     ],
+    image: "/MoviePics/Parasite.jpg",
   },
   {
     id: 15,
@@ -237,6 +251,7 @@ const Movies = [
       "Chrome-plated, turbo-charged filmmaking at its finest.",
       "Puts the 'rad' in 'post-apocalyptic road rage'.",
     ],
+    image: "/MoviePics/MadMaxFuryRoad.jpg",
   },
   {
     id: 16,
@@ -252,6 +267,7 @@ const Movies = [
       "Pride Rock's finest hour.",
       "Even Scar couldn't find anything wrong with this one.",
     ],
+    image: "/MoviePics/TheLionKing.jpg",
   },
   {
     id: 17,
@@ -267,6 +283,7 @@ const Movies = [
       "Worth half the universe's population.",
       "Thanos should've snapped away the competition.",
     ],
+    image: "/MoviePics/AvengersEndgame.jpg",
   },
   {
     id: 18,
@@ -282,6 +299,7 @@ const Movies = [
       "There's a friend in this movie.",
       "Proves toys can tell better stories than most humans.",
     ],
+    image: "/MoviePics/ToyStory.jpg",
   },
   {
     id: 19,
@@ -297,6 +315,7 @@ const Movies = [
       "Their hearts will go on, and so will this film's legacy.",
       "Drawing this movie like one of your French classics.",
     ],
+    image: "/MoviePics/Titanic.jpg",
   },
   {
     id: 20,
@@ -312,6 +331,7 @@ const Movies = [
       "Spared no expense on the entertainment value.",
       "Clever girl of a movie.",
     ],
+    image: "/MoviePics/JurassicPark.jpg",
   },
   {
     id: 21,
@@ -327,6 +347,7 @@ const Movies = [
       "Earth-shattering drama that's out of this world.",
       "Makes Matt Damon's Martian problems look like a picnic.",
     ],
+    image: "/MoviePics/MarsUprising.webp",
   },
   {
     id: 22,
@@ -342,6 +363,7 @@ const Movies = [
       "Houston, we have a masterpiece.",
       "Gives new meaning to working from home... in space.",
     ],
+    image: "/MoviePics/TheLastAstronaut.jpg",
   },
   {
     id: 23,
@@ -357,6 +379,7 @@ const Movies = [
       "The uncertainty principle of entertainment.",
       "Finally, a quantum physics film that doesn't collapse under observation.",
     ],
+    image: "/MoviePics/QuantumParadox.jpg",
   },
   {
     id: 24,
@@ -372,6 +395,7 @@ const Movies = [
       "Time waits for no one, except this film.",
       "Tomorrow called, it wants its plot back.",
     ],
+    image: "/MoviePics/EchoesOfTomorrow.jpg",
   },
   {
     id: 25,
@@ -387,6 +411,7 @@ const Movies = [
       "An island vacation gone perfectly wrong.",
       "More mysterious than your GPS on a bad day.",
     ],
+    image: "/MoviePics/TheForgottenIsland.jpg",
   },
   {
     id: 26,
@@ -402,6 +427,7 @@ const Movies = [
       "Detective noir gets a neon makeover.",
       "The only thing darker than the city is the plot.",
     ],
+    image: "/MoviePics/NightfallCity.jpg",
   },
   {
     id: 27,
@@ -417,6 +443,7 @@ const Movies = [
       "Makes lunar colonization look like a walk in the park... sort of.",
       "Houston, we have a hit.",
     ],
+    image: "/MoviePics/LunarColony.jpg",
   },
   {
     id: 28,
@@ -432,6 +459,7 @@ const Movies = [
       "Puts the 'cyber' in 'cyber-thriller'.",
       "Hack your way to the edge of your seat.",
     ],
+    image: "/MoviePics/Codebreaker.jpg",
   },
 ];
 
