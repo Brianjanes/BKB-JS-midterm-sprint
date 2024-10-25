@@ -69,7 +69,7 @@ header {
 .header-img-top {
   width: 100%;
   height: 400px; /* Adjust this value based on your needs */
-  background-image: url("/blockbuster_banner_cropped.png");
+  background-image: url("/Vector.svg");
   background-position: center; /* Centers the background image */
   background-repeat: no-repeat;
   background-size: cover;
@@ -207,27 +207,38 @@ footer {
   gap: 2rem;
 }
 
+.featured-movie-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  width: 100%;
+  height: 150px; /* Fixed height */
+}
+
 .featured-movie-link {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s;
-}
-
-.featured-movie-link:hover {
-  transform: translateY(-5px);
+  display: block;
+  height: 100%; /* Takes full height */
+  width: 100%;
 }
 
 .featured-movie-wrapper {
   padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .featured-movie-title {
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-size: 1.25rem;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .featured-movie-metadata {
@@ -235,16 +246,112 @@ footer {
   justify-content: space-between;
   align-items: center;
   color: #666;
+  margin-bottom: 40px;
+}
+/* Reviews styles */
+.movie-reviews {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-.featured-movie-score {
-  color: #f5c518;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+.featured-movie-card:hover .movie-reviews {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-text {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-style: italic;
+}
+
+.reviewer {
+  color: #666;
+  font-size: 0.9rem;
+}
+.movie-reviews {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.featured-movie-card:hover .movie-reviews {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-text {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-style: italic;
+}
+
+.reviewer {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .featured-movies-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-movies-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .featured-movies-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-movies-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1024px) {
