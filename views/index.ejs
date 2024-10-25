@@ -10,6 +10,15 @@
       <div class="featured-movies-container">
         <% movies.forEach(movie => { %>
         <div class="featured-movie-card">
+          <div class="spider-container">
+            <div class="spider spider-1"></div>
+            <div class="spider spider-2"></div>
+            <div class="spider spider-3"></div>
+          </div>
+          <div class="ghost-container">
+            <div class="ghost ghost-1">👻</div>
+            <div class="ghost ghost-2">👻</div>
+          </div>
           <a href="/movie/<%= movie.id %>" class="featured-movie-link">
             <div class="featured-movie-wrapper">
               <div class="movie-image-container">
