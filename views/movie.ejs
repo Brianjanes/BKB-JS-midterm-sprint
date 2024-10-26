@@ -1,56 +1,73 @@
-<html lang="en">
-  <head>
-    <title>movie!</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css" />
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <main class="main-content">
-      <% if (movie) { %>
-      <div class="movie-card">
-        <div class="inner-movie-card">
-          <div class="movie-card-top">
-            <div class="movie-info">
-              <span class="static-info">Title:</span>
-              <%= movie.title %>
-            </div>
-            <div class="movie-info">
-              <span class="static-info">Release Year:</span>
-              <%= movie.releaseYear %>
-            </div>
-
-            <div class="movie-info">
-              <span class="static-info">Genre:</span>
-
-              <a href="/<%= movie.genre %>" target="_blank"
-                ><%= movie.genre %></a
-              >
-            </div>
-            <div class="movie-info">
-              <span class="static-info">Director:</span>
-              <%= movie.director %>
-            </div>
+<%- include('partials/header') %>
+<div class="content-wrapper">
+  <main class="main-content">
+    <% if (movie) { %>
+    <div class="movie-card">
+      <div class="inner-movie-card">
+        <div class="movie-image-container">
+          <img
+            src="<%= movie.image %>"
+            alt="<%= movie.title %>"
+            class="movie-image"
+            onerror="this.src='/MoviePics/Gladiator.jpg'"
+          />
+        </div>
+        <div class="movie-card-top">
+          <div class="movie-info">
+            <span class="static-info">Title:</span>
+            <%= movie.title %>
+          </div>
+          <div class="movie-info">
+            <span class="static-info">Release Year:</span>
+            <%= movie.releaseYear %>
           </div>
 
-          <div class="movie-card-bottom">
-            <div class="rating-div">
-              <% if (movie.rating) { %>
-              <span class="movie-info featured-movie-score"
-                >★ <%= movie.rating.toFixed(1) %> / 10</span
-              >
-              <% } %>
-            </div>
+          <div class="movie-info">
+            <span class="static-info">Genre:</span>
+            <a href="/genres/<%= movie.genre %>"><%= movie.genre %></a>
+          </div>
+
+          <div class="movie-info">
+            <span class="static-info">Director:</span>
+            <%= movie.director %>
+          </div>
+
+          <div class="movie-info">
+            <span class="static-info">Description:</span>
+            <%= movie.description %>
           </div>
         </div>
-      </div>
 
-      <% } else { %>
-      <div class="movie-card">
-        <p>No movie found</p>
-      </div>
+        <div class="movie-card-bottom">
+          <div class="rating-div">
+            <% if (movie.rating) { %>
+            <span class="movie-info featured-movie-score">
+              ★ <%= movie.rating.toFixed(1) %> / 10
+            </span>
+            <% } %>
+          </div>
+        </div>
 
-      <% } %>
-    </main>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+        <% if (movie.reviews && movie.reviews.length > 0) { %>
+        <div class="movie-reviews show">
+          <% movie.reviews.forEach((review, index) => { %>
+          <div class="review-item">
+            <p class="review-text">"<%= review %>"</p>
+            <span class="reviewer">
+              - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
+            </span>
+          </div>
+          <% }); %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <% } else { %>
+    <div class="movie-card">
+      <p>No movie found</p>
+    </div>
+    <% } %>
+  </main>
+</div>
+<%- include('partials/footer') %>

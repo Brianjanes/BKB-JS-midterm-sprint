@@ -62,6 +62,27 @@ function selectRandomMovieId() {
   return Movies[randomIndex].id;
 }
 
+/**
+ * Get all upcoming movies
+ * @returns {Array.<Movies>} - An array of upcoming movies with release dates in the future
+ */
+function getUpcomingMovies() {
+  // Get current date
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+
+  // Filter movies where releaseYear is greater than current year
+  const upcomingMovies = Movies.filter((movie) => {
+    // If the movie has no rating, it's considered unreleased/upcoming
+    if (movie.rating === null) return true;
+
+    // Check if release year is in the future
+    return movie.releaseYear > currentYear;
+  });
+
+  return upcomingMovies;
+}
+
 // Export the functions to be used in other modules
 module.exports = {
   getMoviesByGenre,
@@ -69,4 +90,5 @@ module.exports = {
   getMovieDetailsById,
   selectRandomMovieId,
   getRandomMovies,
+  getUpcomingMovies,
 };

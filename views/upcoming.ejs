@@ -1,7 +1,7 @@
-<%- include('partials/header') %>
+<%- include('partials/header', { title: 'Upcoming Movies' }) %>
 <div class="content-wrapper">
   <main class="homepage-container">
-    <h1>Top Rated Movies</h1>
+    <h1>Upcoming Movies</h1>
     <div class="featured-movies-container">
       <% movies.forEach(movie => { %>
       <div class="featured-movie-card">
@@ -27,13 +27,7 @@
             <h2 class="featured-movie-title"><%= movie.title %></h2>
             <div class="featured-movie-metadata">
               <span class="featured-movie-year"><%= movie.releaseYear %></span>
-              <% if (movie.rating !== null) { %>
-              <span class="featured-movie-score"
-                >★ <%= movie.rating.toFixed(1) %>/10</span
-              >
-              <% } else { %>
-              <span class="featured-movie-unreleased">Unreleased</span>
-              <% } %>
+              <span class="featured-movie-unreleased">Coming Soon</span>
             </div>
           </div>
         </a>
