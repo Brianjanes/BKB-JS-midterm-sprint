@@ -6,6 +6,7 @@ const {
   getMovieDetailsById,
   selectRandomMovieId,
   getRandomMovies,
+  getUpcomingMovies,
 } = require("./utils/movieUtils");
 const { Movies, Genres } = require("./utils/data");
 
@@ -20,16 +21,21 @@ app.use(express.static("public"));
 // GET ROUTES
 app.get("/", (request, response) => {
   const randomMovies = getRandomMovies(9);
-  response.render("index", { movies: randomMovies });
+  response.render("index", {
+    movies: randomMovies,
+    title: "Movie Gallery",
+  });
 });
 
+// Single movie route
 app.get("/movie/:id", (request, response) => {
   const movieId = parseInt(request.params.id, 10);
-
   try {
     const selectedMovie = getMovieDetailsById(movieId);
-    console.log("Selected Movie:", selectedMovie);
-    response.render("movie", { movie: selectedMovie });
+    response.render("movie", {
+      movie: selectedMovie,
+      title: selectedMovie.title,
+    });
   } catch (error) {
     console.error("Error:", error);
     response.status(404).json({
@@ -38,13 +44,15 @@ app.get("/movie/:id", (request, response) => {
   }
 });
 
-// route to get a random movie
+// Random movie route
 app.get("/random", (request, response) => {
   try {
     const randomMovieID = selectRandomMovieId();
     const movie = getMovieDetailsById(randomMovieID);
-    console.log("Random Movie:", movie);
-    return response.render("random", { movie: movie });
+    return response.render("random", {
+      movie: movie,
+      title: "Random Movie - " + movie.title,
+    });
   } catch (error) {
     console.error("Error:", error);
     response.status(500).json({
@@ -53,38 +61,49 @@ app.get("/random", (request, response) => {
   }
 });
 
-// route to get top-rated movies
+// Top rated movies route
 app.get("/top-rated-movies", (request, response) => {
   const topMovies = getTopRatedMovies(5);
-  response.render("top-rated-movies", { movies: topMovies });
+  response.render("top-rated-movies", {
+    movies: topMovies,
+    title: "Top Rated Movies",
+  });
 });
 
-// route to get all movies from a specific genre, and also return 3 random movies from that genre
-app.get("/genre/:genre", (request, response) => {
+// Genre route
+app.get("/genres/:genre", (request, response) => {
   try {
     const genre = request.params.genre;
-
-    // Validate that the genre exists
     if (!Object.values(Genres).includes(genre)) {
       return response.status(404).render("error", {
         message: "Genre not found",
+        title: "Genre Not Found",
       });
     }
-
     const { all: genreMovies, suggestions: randomSuggestions } =
       getMoviesByGenre(genre);
-
     response.render("genre", {
       genre,
       movies: genreMovies,
       suggestions: randomSuggestions,
+      title: `${genre} Movies`,
     });
   } catch (error) {
     console.error("Error:", error);
     response.status(500).render("error", {
       message: "Internal server error",
+      title: "Error",
     });
   }
+});
+
+// up & coming route
+app.get("/upcoming", (request, response) => {
+  const upcomingMovies = getUpcomingMovies();
+  response.render("upcoming", {
+    movies: upcomingMovies,
+    title: "Upcoming Movies",
+  });
 });
 
 // POST ROUTES
