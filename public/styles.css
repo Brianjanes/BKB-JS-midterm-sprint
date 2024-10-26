@@ -1,4 +1,4 @@
-/* Base styling, feel free to remove or alter */
+/* Reset and Base Styles */
 html {
   height: 100%;
   margin: 0;
@@ -12,100 +12,96 @@ body {
     rgba(93, 142, 251, 1) 50%,
     rgba(0, 212, 255, 1) 100%
   );
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: "Lato", sans-serif;
-  display: flex;
-  flex-direction: column;
   color: yellow;
+  overflow-x: hidden;
 }
 
-a {
-  color: yellow;
+/* Layout Structure */
+.content-wrapper {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .main-content {
   display: flex;
   justify-content: center;
-  flex: 1;
   align-items: center;
   flex-direction: column;
   padding: 2rem 0;
-  /* viewport height less the header (88px) and footer (100px) heights */
-  min-height: calc(100vh - 188px);
 }
 
-.main-content h1 {
-  font-size: 50px;
+.homepage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
+/* Links */
 a {
+  color: yellow;
   font-size: 1rem;
+  font-weight: bold;
   text-decoration: none;
-  display: inline-block;
   transform-origin: center;
 }
 
 a:hover {
-  color: white;
   opacity: 0.8;
-  font-weight: bolder;
   transition: ease-in-out 0.3s;
   transform: scale(1.1);
 }
 
-/* Header styles */
+/* Header Styles */
 header {
   position: sticky;
   top: 0;
-  max-width: 100dvw;
   width: 100%;
-  height: 500px; /* Set a specific height for the header */
+  z-index: 100;
+  background: inherit;
   border-bottom: 2px solid yellow;
-  display: flex;
-  flex-direction: column;
 }
 
 .header-img-top {
   width: 100%;
-  height: 64; /* Adjust this value based on your needs */
-  background-image: url("/blockbuster-header-img.png");
-  background-position: center; /* Centers the background image */
+  height: 400px;
+  background-image: url("/Vector.svg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-bottom: 2px solid yellow;
 }
 
 .link-div {
   width: 100%;
-  height: 24px;
+  height: 32px;
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  background-color: rgba(
-    93,
-    142,
-    251,
-    1
-  ); /* Optional: adds a background to the links */
+  align-items: center;
+  padding-right: 2rem;
+  box-sizing: border-box;
 }
 
 .links {
-  margin-inline: 2rem;
+  width: 40%;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-/* Footer styles */
+/* Footer Styles */
 footer {
-  position: sticky;
-  bottom: 0;
-  max-width: 100dvw;
   width: 100%;
   height: 100px;
   background-color: navy;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .inner-footer-div {
@@ -114,7 +110,8 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-inline: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .student-links {
@@ -141,21 +138,57 @@ footer {
   gap: 1rem;
 }
 
-/* simgle movie display (for random movie and single movie) */
-
+/* Movie Card Styles */
 .movie-card {
-  width: 500px;
-  height: 300px;
+  width: 800px;
+  min-height: 600px;
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
   color: black;
-  padding: 3rem 2rem;
+  padding: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
+  align-items: flex-start;
+  font-size: 1.2rem;
   gap: 1rem;
+}
+
+.movie-card .movie-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.movie-card .movie-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-card .movie-reviews {
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+
+.movie-card .review-item {
+  padding: 1rem 0;
+}
+
+.movie-card .movie-info {
+  margin-bottom: 1rem;
+}
+
+.movie-card .static-info {
+  min-width: 100px;
+  display: inline-block;
 }
 
 .inner-movie-card {
@@ -196,17 +229,18 @@ footer {
   font-size: 1.5rem;
 }
 
-/* Homepage styles */
-.homepage-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
+/* Featured Movies Grid */
 .featured-movies-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+}
+
+.featured-movie-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  width: 100%;
+  height: 500px;
 }
 
 .featured-movie-link {
@@ -215,21 +249,25 @@ footer {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s;
-}
-
-.featured-movie-link:hover {
-  transform: translateY(-5px);
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .featured-movie-wrapper {
   padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .featured-movie-title {
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-size: 1.25rem;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .featured-movie-metadata {
@@ -237,18 +275,194 @@ footer {
   justify-content: space-between;
   align-items: center;
   color: #666;
+  margin-bottom: 40px;
 }
 
-.featured-movie-score {
-  color: #f5c518;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+/* Reviews Hover Effect */
+.movie-reviews {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
+.featured-movie-card:hover .movie-reviews {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-text {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-style: italic;
+}
+
+.reviewer {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Movie Images */
+.movie-image-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.movie-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Animation Containers */
+.ghost-container {
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
+}
+
+.spider-container {
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* Spiders */
+.spider {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url("MoviePics/SpiderBoy.svg") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.spider-1 {
+  left: 20%;
+  bottom: 0;
+}
+.spider-2 {
+  left: 50%;
+  bottom: 0;
+}
+.spider-3 {
+  left: 80%;
+  bottom: 0;
+}
+
+/* Ghosts */
+.ghost {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
+  content: "👻";
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.ghost-1 {
+  left: 30%;
+  bottom: 0;
+}
+.ghost-2 {
+  left: 60%;
+  bottom: 0;
+}
+
+/* Animations */
+@keyframes crawlLeft {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-300px, -150px) rotate(-45deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes crawlRight {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(300px, -150px) rotate(45deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(100px, -50px) rotate(10deg);
+  }
+  100% {
+    transform: translate(200px, -100px) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+/* Animation Triggers */
+.featured-movie-card:hover .ghost-1 {
+  opacity: 1;
+  animation: float 5s ease-out forwards;
+}
+
+.featured-movie-card:hover .ghost-2 {
+  opacity: 1;
+  animation: float 3.5s ease-out forwards 0.3s;
+}
+
+.featured-movie-card:hover .spider-1 {
+  opacity: 1;
+  animation: crawlLeft 3s ease-out forwards;
+}
+
+.featured-movie-card:hover .spider-2 {
+  opacity: 1;
+  animation: crawlRight 3.5s ease-out forwards 0.2s;
+}
+
+.featured-movie-card:hover .spider-3 {
+  opacity: 1;
+  animation: crawlLeft 4s ease-out forwards 0.4s;
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
   .featured-movies-container {
     grid-template-columns: repeat(2, 1fr);
