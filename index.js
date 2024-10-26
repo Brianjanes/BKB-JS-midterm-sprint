@@ -54,9 +54,37 @@ app.get("/random", (request, response) => {
 });
 
 // route to get top-rated movies
-app.get('/top-rated-movies', (req, res) => {
+app.get("/top-rated-movies", (request, response) => {
   const topMovies = getTopRatedMovies(5);
-  res.render('top-rated-movies', { movies: topMovies });
+  response.render("top-rated-movies", { movies: topMovies });
+});
+
+// route to get all movies from a specific genre, and also return 3 random movies from that genre
+app.get("/genre/:genre", (request, response) => {
+  try {
+    const genre = request.params.genre;
+
+    // Validate that the genre exists
+    if (!Object.values(Genres).includes(genre)) {
+      return response.status(404).render("error", {
+        message: "Genre not found",
+      });
+    }
+
+    const { all: genreMovies, suggestions: randomSuggestions } =
+      getMoviesByGenre(genre);
+
+    response.render("genre", {
+      genre,
+      movies: genreMovies,
+      suggestions: randomSuggestions,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(500).render("error", {
+      message: "Internal server error",
+    });
+  }
 });
 
 // POST ROUTES

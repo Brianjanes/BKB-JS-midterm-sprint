@@ -1,24 +1,24 @@
 const { Movies, Genres } = require("./data");
 
 /**
- * Get `x` movies by genre
+ * Get all movies by genre and random suggestions
  * @param {Genres} genre - The genre of the movies
- * @param {number} x - The number of movies to retrieve
- * @returns {Array.<Movies>} - An array of movies matching the genre
+ * @returns {{all: Array.<Movies>, suggestions: Array.<Movies>}} - Object containing all movies and random suggestions of the genre
  */
-function getMoviesByGenre(genre, x) {
-  // Implementation here
-  if ((x = 0)) {
-    return [];
-  } else if (x < 0) {
-    const moviesByGenre = Movies.filter((movie) => movie.genre === genre).slice(
-      0,
-      x
-    );
-    return moviesByGenre;
-  }
-}
+function getMoviesByGenre(genre) {
+  // Get all movies of the specified genre
+  const allMoviesOfGenre = Movies.filter((movie) => movie.genre === genre);
 
+  // Get 3 random suggestions from the same genre
+  const suggestions = [...allMoviesOfGenre]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
+
+  return {
+    all: allMoviesOfGenre,
+    suggestions: suggestions,
+  };
+}
 /**
  * Get the `x` top rated movies, ordered by rating
  * @param {number} x - The number of top-rated movies to retrieve
