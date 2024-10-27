@@ -46,7 +46,19 @@
             </span>
             <% } %>
           </div>
-        </div>
+          <% if (movie.trailerUrl) { %>
+            <div class="trailer-wrapper">
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="<%= movie.trailerUrl %>"
+                    title="<%= movie.title %> trailer"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        <% } %>
 
         <% if (movie.reviews && movie.reviews.length > 0) { %>
         <div class="movie-reviews show">
