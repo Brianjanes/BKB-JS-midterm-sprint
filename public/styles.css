@@ -231,10 +231,9 @@ footer {
 
 /* Featured Movies Grid */
 .featured-movies-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  padding: 1rem;
 }
 
 .featured-movie-card {
