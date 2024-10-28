@@ -4,6 +4,9 @@
     <% if (movie) { %>
     <div class="movie-card">
       <div class="inner-movie-card">
+        <div class="movie-info-title">
+          <span class="static-info"><%= movie.title %></span>
+        </div>
         <div class="movie-image-container">
           <img
             src="<%= movie.image %>"
@@ -13,10 +16,6 @@
           />
         </div>
         <div class="movie-card-top">
-          <div class="movie-info">
-            <span class="static-info">Title:</span>
-            <%= movie.title %>
-          </div>
           <div class="movie-info">
             <span class="static-info">Release Year:</span>
             <%= movie.releaseYear %>
@@ -46,20 +45,34 @@
             </span>
             <% } %>
           </div>
-        </div>
 
-        <% if (movie.reviews && movie.reviews.length > 0) { %>
-        <div class="movie-reviews show">
-          <% movie.reviews.forEach((review, index) => { %>
-          <div class="review-item">
-            <p class="review-text">"<%= review %>"</p>
-            <span class="reviewer">
-              - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-            </span>
+          <!-- Add trailer section here -->
+          <% if (movie.trailerUrl) { %>
+          <div class="trailer-wrapper">
+            <iframe
+              width="560"
+              height="315"
+              src="<%= movie.trailerUrl %>"
+              title="<%= movie.title %> trailer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
           </div>
-          <% }); %>
+          <% } %> <% if (movie.reviews && movie.reviews.length > 0) { %>
+          <div class="movie-reviews show">
+            <% movie.reviews.forEach((review, index) => { %>
+            <div class="review-item">
+              <p class="review-text">"<%= review %>"</p>
+              <span class="reviewer">
+                - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
+              </span>
+            </div>
+            <% }); %>
+          </div>
+          <% } %>
         </div>
-        <% } %>
       </div>
     </div>
 
