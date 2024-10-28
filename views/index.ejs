@@ -14,6 +14,12 @@
           <div class="ghost ghost-1">👻</div>
           <div class="ghost ghost-2">👻</div>
         </div>
+        <div class="bat-container">
+          <div class="bat bat-left-1">🦇</div>
+          <div class="bat bat-left-2">🦇</div>
+          <div class="bat bat-right-1">🦇</div>
+          <div class="bat bat-right-2">🦇</div>
+        </div>
         <a href="/movie/<%= movie.id %>" class="featured-movie-link">
           <div class="featured-movie-wrapper">
             <div class="movie-image-container">
@@ -37,16 +43,6 @@
             </div>
           </div>
         </a>
-        <div class="movie-reviews">
-          <% movie.reviews.forEach((review, index) => { %>
-          <div class="review-item">
-            <p class="review-text">"<%= review %>"</p>
-            <span class="reviewer">
-              - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-            </span>
-          </div>
-          <% }); %>
-        </div>
       </div>
       <% }); %>
     </div>
