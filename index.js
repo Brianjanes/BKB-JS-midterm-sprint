@@ -20,26 +20,38 @@ app.use(express.static("public"));
 
 // GET ROUTES
 app.get("/", (request, response) => {
-  const randomMovies = getRandomMovies(9);
-  response.render("index", {
-    movies: randomMovies,
-    title: "Movie Gallery",
-  });
+  try {
+    const randomMovies = getRandomMovies(9);
+    response.render("index", {
+      movies: randomMovies,
+      title: "Movie Gallery",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(500).render("error", {
+      message: "Internal server error",
+      title: "Error",
+    });
+  }
 });
 
 // Single movie route
 app.get("/movie/:id", (request, response) => {
   const movieId = parseInt(request.params.id, 10);
+
   try {
     const selectedMovie = getMovieDetailsById(movieId);
+    const suggestedMovies = getMoviesByGenre(selectedMovie.genre).suggestions;
     response.render("movie", {
       movie: selectedMovie,
       title: selectedMovie.title,
+      suggestions: suggestedMovies,
     });
   } catch (error) {
     console.error("Error:", error);
-    response.status(404).json({
+    response.status(404).render("error", {
       message: "Movie not found",
+      title: "Error - Movie Not Found",
     });
   }
 });
@@ -49,25 +61,35 @@ app.get("/random", (request, response) => {
   try {
     const randomMovieID = selectRandomMovieId();
     const movie = getMovieDetailsById(randomMovieID);
-    return response.render("random", {
+    response.render("random", {
+      // Removed return statement for consistency
       movie: movie,
       title: "Random Movie - " + movie.title,
     });
   } catch (error) {
     console.error("Error:", error);
-    response.status(500).json({
+    response.status(500).render("error", {
       message: "Internal server error",
+      title: "Error",
     });
   }
 });
 
 // Top rated movies route
 app.get("/top-rated-movies", (request, response) => {
-  const topMovies = getTopRatedMovies(5);
-  response.render("top-rated-movies", {
-    movies: topMovies,
-    title: "Top Rated Movies",
-  });
+  try {
+    const topMovies = getTopRatedMovies(5);
+    response.render("top-rated-movies", {
+      movies: topMovies,
+      title: "Top Rated Movies",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(500).render("error", {
+      message: "Internal server error",
+      title: "Error",
+    });
+  }
 });
 
 // Genre route
@@ -80,12 +102,10 @@ app.get("/genres/:genre", (request, response) => {
         title: "Genre Not Found",
       });
     }
-    const { all: genreMovies, suggestions: randomSuggestions } =
-      getMoviesByGenre(genre);
+    const { all: genreMovies } = getMoviesByGenre(genre);
     response.render("genre", {
       genre,
       movies: genreMovies,
-      suggestions: randomSuggestions,
       title: `${genre} Movies`,
     });
   } catch (error) {
@@ -99,11 +119,19 @@ app.get("/genres/:genre", (request, response) => {
 
 // up & coming route
 app.get("/upcoming", (request, response) => {
-  const upcomingMovies = getUpcomingMovies();
-  response.render("upcoming", {
-    movies: upcomingMovies,
-    title: "Upcoming Movies",
-  });
+  try {
+    const upcomingMovies = getUpcomingMovies();
+    response.render("upcoming", {
+      movies: upcomingMovies,
+      title: "Upcoming Movies",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(500).render("error", {
+      message: "Internal server error",
+      title: "Error",
+    });
+  }
 });
 
 // POST ROUTES

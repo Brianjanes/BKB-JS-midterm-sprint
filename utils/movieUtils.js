@@ -9,16 +9,26 @@ function getMoviesByGenre(genre) {
   // Get all movies of the specified genre
   const allMoviesOfGenre = Movies.filter((movie) => movie.genre === genre);
 
-  // Get 3 random suggestions from the same genre
-  const suggestions = [...allMoviesOfGenre]
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3);
+  // Helper function to get random unique items using Fisher-Yates shuffle
+  function getRandomUniqueItems(array, count) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled.slice(0, count);
+  }
+
+  // Get 3 random suggestions (or less if there aren't enough movies)
+  const count = Math.min(3, allMoviesOfGenre.length);
+  const suggestions = getRandomUniqueItems(allMoviesOfGenre, count);
 
   return {
     all: allMoviesOfGenre,
     suggestions: suggestions,
   };
 }
+
 /**
  * Get the `x` top rated movies, ordered by rating
  * @param {number} x - The number of top-rated movies to retrieve
