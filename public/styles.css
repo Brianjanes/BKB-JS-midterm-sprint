@@ -123,9 +123,12 @@ a:hover {
  *******************************/
 footer {
   width: 100%;
-  background-color: navy;
+  background: linear-gradient(to right, #0d0d35, #191970, #0d0d35);
   padding: 1rem;
   margin-top: auto;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .inner-footer-div {
@@ -135,6 +138,8 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .student-links {
@@ -142,6 +147,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  color: #888;
 }
 
 .git-links {
@@ -149,8 +155,26 @@ footer {
   align-items: center;
 }
 
+.git-links a {
+  color: #ff6b6b;
+  text-decoration: none;
+  font-family: "Creepster", cursive;
+  font-size: 1.2em;
+  text-shadow: 0 0 5px #ff0000;
+  transition: all 0.3s ease;
+}
+
+.git-links a:hover {
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff6b6b;
+  transform: scale(1.1);
+  animation: floatText 2s ease-in-out infinite;
+}
+
 .git-links span {
   margin-inline: 1rem;
+  color: #666;
+  font-size: 1.2em;
 }
 
 .left-side {
@@ -158,6 +182,17 @@ footer {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+
+.left-side p {
+  color: #888;
+  font-family: "Creepster", cursive;
+  text-shadow: 0 0 3px #ffffff;
+}
+.summon-text {
+  color: #ffd100;
+  font-family: "Creepster", cursive;
+  font-size: 1.2em;
 }
 
 /*******************************
@@ -350,7 +385,7 @@ footer {
 /* Page Title Styles */
 .homepage-container h1,
 .homepage-container h2 {
-  color: yellow;
+  color: #ffd100;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -379,23 +414,18 @@ footer {
 *******************************/
 .movie-reviews {
   position: absolute;
-  top: 100%;
+  top: 100%; /* Position it right below the card */
   left: 0;
   right: 0;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  margin-top: 0.5rem;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 20;
+  z-index: 10000; /* Ensure it stays above other cards */
   pointer-events: none;
-  height: 0;
-  overflow: hidden;
-  transform: translateZ(0);
-  margin-bottom: 2rem;
 }
 
 .movie-reviews.show {
@@ -410,8 +440,9 @@ footer {
 .featured-movie-card:hover .movie-reviews {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
   height: auto;
+  transform: translateY(0);
+  z-index: 10000;
 }
 
 .rating-div {
@@ -428,32 +459,144 @@ footer {
 /*******************************
  * Animations & Decorative Elements
  *******************************/
-.ghost-container,
-.spider-container {
-  position: fixed;
-  width: 100%;
-  height: 0;
-  pointer-events: none;
-  z-index: 1000;
-}
-
 .ghost-container {
-  bottom: 0;
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
 }
 .spider-container {
-  top: 0;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
+}
+.spider {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url("MoviePics/SpiderBoy.svg") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  opacity: 0; /* For testing */
+  transition: opacity 1s;
 }
 
-.ghost,
-.spider {
-  position: fixed;
+.spider img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ghost {
+  position: absolute;
   width: 25px;
   height: 25px;
-  opacity: 0;
+  font-size: 20px;
+  content: "👻";
   pointer-events: none;
-  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+  bottom: 20;
 }
 
+.bat-container {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
+}
+
+.bat {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  content: "🦇";
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Position the bats */
+.bat-left-1 {
+  left: 0;
+}
+
+.bat-left-2 {
+  left: 0;
+}
+
+.bat-right-1 {
+  right: 0;
+}
+
+.bat-right-2 {
+  right: 0;
+}
+
+/* Bat animation keyframes */
+@keyframes flyLeft {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-50px, -30px) rotate(-30deg) scale(0.9);
+  }
+  50% {
+    transform: translate(-100px, -50px) rotate(-15deg) scale(0.9);
+  }
+  75% {
+    transform: translate(-150px, -80px) rotate(-45deg) scale(0.8);
+  }
+  100% {
+    transform: translate(-200px, -100px) rotate(-30deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes flyRight {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(50px, -30px) rotate(30deg) scale(0.9);
+  }
+  50% {
+    transform: translate(100px, -50px) rotate(15deg) scale(0.9);
+  }
+  75% {
+    transform: translate(150px, -80px) rotate(45deg) scale(0.8);
+  }
+  100% {
+    transform: translate(200px, -100px) rotate(30deg) scale(0.8);
+    opacity: 0;
+  }
+}
+/* Hover animations for bats */
+.featured-movie-card:hover .bat-left-1 {
+  opacity: 1;
+  animation: flyLeft 2s ease-out forwards;
+}
+
+.featured-movie-card:hover .bat-left-2 {
+  opacity: 1;
+  animation: flyLeft 2.5s ease-out forwards 0.2s;
+}
+
+.featured-movie-card:hover .bat-right-1 {
+  opacity: 1;
+  animation: flyRight 2s ease-out forwards;
+}
+
+.featured-movie-card:hover .bat-right-2 {
+  opacity: 1;
+  animation: flyRight 2.5s ease-out forwards 0.2s;
+}
 /* Spider Positions */
 .spider-1 {
   left: 20%;
@@ -483,12 +626,10 @@ footer {
   0% {
     transform: translate(0, 0) rotate(0deg) scale(1);
     opacity: 1;
-    position: fixed;
   }
   100% {
     transform: translate(-300px, -150px) rotate(-45deg) scale(0.5);
-    opacity: 0;
-    position: fixed;
+    opacity: 1;
   }
 }
 
@@ -496,12 +637,10 @@ footer {
   0% {
     transform: translate(0, 0) rotate(0deg) scale(1);
     opacity: 1;
-    position: fixed;
   }
   100% {
     transform: translate(300px, -150px) rotate(45deg) scale(0.5);
-    opacity: 0;
-    position: fixed;
+    opacity: 1;
   }
 }
 
@@ -543,7 +682,70 @@ footer {
   opacity: 1;
   animation: crawlLeft 4s ease-out forwards 0.4s;
 }
+.footer-decorator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+}
 
+.cobweb {
+  position: absolute;
+  font-size: 32px;
+  opacity: 0.5;
+  color: #fff;
+}
+
+.cobweb-1 {
+  top: 32px;
+  left: 10px;
+  transform: rotate(-45deg);
+}
+
+.cobweb-2 {
+  top: 32px;
+  right: 10px;
+  transform: rotate(45deg);
+}
+
+/* Animations */
+@keyframes floatText {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+.fog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: fogRoll 30s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes fogRoll {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
 /*******************************
  * Media Queries
  *******************************/
@@ -590,6 +792,24 @@ footer {
 
   .left-side {
     width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .inner-footer-div {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .student-links,
+  .left-side {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .git-links {
+    flex-wrap: wrap;
     justify-content: center;
   }
 }
