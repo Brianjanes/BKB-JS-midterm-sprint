@@ -1,5 +1,5 @@
 <%- include('./head', { title: title || 'Movie Gallery' }) %>
-<header>
+<header id="header">
   <div class="header-img-top"></div>
   <div class="link-div">
     <div class="links">
@@ -10,3 +10,28 @@
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const header = document.getElementById('header');
+  const headerImgTop = header.querySelector('.header-img-top');
+  const collapseThreshold = 100; // Adjust as needed to trigger collapse
+  const reappearThreshold = 50; // Distance from top to re-show the banner
+
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+
+    // Hide header image and fix the header when scrolling past collapseThreshold
+    if (scrollPosition > collapseThreshold) {
+      header.classList.add('fixed-header');
+      headerImgTop.style.display = 'none';
+    }
+
+    // Revert to show banner when user scrolls back up near the top
+    if (scrollPosition < reappearThreshold) {
+      header.classList.remove('fixed-header');
+      headerImgTop.style.display = 'block';
+    }
+  });
+});
+</script>
