@@ -31,18 +31,6 @@
             </div>
           </div>
         </a>
-        <% if (movie.reviews && movie.reviews.length > 0) { %>
-        <div class="movie-reviews">
-          <% movie.reviews.forEach((review, index) => { %>
-          <div class="review-item">
-            <p class="review-text">"<%= review %>"</p>
-            <span class="reviewer">
-              - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-            </span>
-          </div>
-          <% }); %>
-        </div>
-        <% } %>
       </div>
       <% }); %>
     </div>
