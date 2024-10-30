@@ -25,6 +25,7 @@ app.get("/", (request, response) => {
     response.render("index", {
       movies: randomMovies,
       title: "Movie Gallery",
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -46,6 +47,7 @@ app.get("/movie/:id", (request, response) => {
       movie: selectedMovie,
       title: selectedMovie.title,
       suggestions: suggestedMovies,
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -65,6 +67,7 @@ app.get("/random", (request, response) => {
       // Removed return statement for consistency
       movie: movie,
       title: "Random Movie - " + movie.title,
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -82,6 +85,7 @@ app.get("/top-rated-movies", (request, response) => {
     response.render("top-rated-movies", {
       movies: topMovies,
       title: "Top Rated Movies",
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -100,6 +104,7 @@ app.get("/genres/:genre", (request, response) => {
       return response.status(404).render("error", {
         message: "Genre not found",
         title: "Genre Not Found",
+        Genres: Genres,
       });
     }
     const { all: genreMovies } = getMoviesByGenre(genre);
@@ -107,6 +112,7 @@ app.get("/genres/:genre", (request, response) => {
       genre,
       movies: genreMovies,
       title: `${genre} Movies`,
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -124,6 +130,7 @@ app.get("/upcoming", (request, response) => {
     response.render("upcoming", {
       movies: upcomingMovies,
       title: "Upcoming Movies",
+      Genres: Genres,
     });
   } catch (error) {
     console.error("Error:", error);

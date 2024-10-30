@@ -2,6 +2,18 @@
 <header id="header">
   <div class="header-img-top"></div>
   <div class="link-div">
+    <div class="genre-dropdown">
+      <span>Select a Genre: </span>
+      <div class="custom-select">
+        <div class="select-trigger">Select a genre</div>
+        <div class="options-container">
+          <% Object.values(Genres).forEach(genre => { %>
+            <a href="/genres/<%= genre %>" class="option"><%= genre %></a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
     <div class="links">
       <a href="/">Home</a>
       <a href="/top-rated-movies">Top Rated Movies</a>

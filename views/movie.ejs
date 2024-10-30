@@ -112,18 +112,6 @@
               </div>
             </div>
           </a>
-          <% if (suggestion.reviews && suggestion.reviews.length > 0) { %>
-          <div class="movie-reviews">
-            <% suggestion.reviews.forEach((review, index) => { %>
-            <div class="review-item">
-              <p class="review-text">"<%= review %>"</p>
-              <span class="reviewer">
-                - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-              </span>
-            </div>
-            <% }); %>
-          </div>
-          <% } %>
         </div>
         <% }); %>
       </div>
