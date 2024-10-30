@@ -2,7 +2,7 @@
 <div class="content-wrapper">
   <main class="homepage-container">
     <h1>Top Rated Movies</h1>
-    <div class="top-rated-movies-container">
+    <div class="featured-movies-container">
       <% movies.forEach(movie => { %>
       <div class="featured-movie-card">
         <div class="spider-container">
@@ -13,6 +13,12 @@
         <div class="ghost-container">
           <div class="ghost ghost-1">👻</div>
           <div class="ghost ghost-2">👻</div>
+        </div>
+        <div class="bat-container">
+          <div class="bat bat-left-1">🦇</div>
+          <div class="bat bat-left-2">🦇</div>
+          <div class="bat bat-right-1">🦇</div>
+          <div class="bat bat-right-2">🦇</div>
         </div>
         <a href="/movie/<%= movie.id %>" class="featured-movie-link">
           <div class="featured-movie-wrapper">
@@ -37,18 +43,6 @@
             </div>
           </div>
         </a>
-        <% if (movie.reviews && movie.reviews.length > 0) { %>
-        <div class="movie-reviews">
-          <% movie.reviews.forEach((review, index) => { %>
-          <div class="review-item">
-            <p class="review-text">"<%= review %>"</p>
-            <span class="reviewer">
-              - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-            </span>
-          </div>
-          <% }); %>
-        </div>
-        <% } %>
       </div>
       <% }); %>
     </div>
