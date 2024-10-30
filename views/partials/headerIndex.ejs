@@ -2,6 +2,18 @@
 <header id="header">
   <div class="header-img-top-index"></div>
   <div class="link-div">
+    <div class="genre-dropdown">
+      <span>Select a Genre: </span>
+      <div class="custom-select">
+        <div class="select-trigger">Select a genre</div>
+        <div class="options-container">
+          <% Object.values(Genres).forEach(genre => { %>
+          <a href="/genres/<%= genre %>" class="option"><%= genre %></a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
     <div class="links">
       <a href="/">Home</a>
       <a href="/top-rated-movies">Top Rated Movies</a>
@@ -12,36 +24,36 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.getElementById('header');
-  const headerImgTop = header.querySelector('.header-img-top-index');
-  const collapseThreshold = 100; // Adjust as needed to trigger height reduction
-  const reappearThreshold = 50; // Distance from top to re-show 200px banner
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("header");
+    const headerImgTop = header.querySelector(".header-img-top-index");
+    const collapseThreshold = 100; // Adjust as needed to trigger height reduction
+    const reappearThreshold = 50; // Distance from top to re-show 200px banner
 
-  let isHeightReduced = false;
+    let isHeightReduced = false;
 
-  window.addEventListener('scroll', function() {
-    const scrollPosition = window.pageYOffset;
+    window.addEventListener("scroll", function () {
+      const scrollPosition = window.pageYOffset;
 
-    // Adjust header image height to 200px when scrolling past collapseThreshold
-    if (scrollPosition > collapseThreshold && !isHeightReduced) {
-      headerImgTop.style.height = '200px';
-      isHeightReduced = true;
-    }
+      // Adjust header image height to 200px when scrolling past collapseThreshold
+      if (scrollPosition > collapseThreshold && !isHeightReduced) {
+        headerImgTop.style.height = "200px";
+        isHeightReduced = true;
+      }
 
-    // Revert to 200px banner when user scrolls back up near the top
-    if (scrollPosition < reappearThreshold && isHeightReduced) {
-      headerImgTop.style.height = '200px';
-      headerImgTop.style.display = 'block';
-      header.classList.remove('fixed-header');
-      isHeightReduced = false;
-    }
+      // Revert to 200px banner when user scrolls back up near the top
+      if (scrollPosition < reappearThreshold && isHeightReduced) {
+        headerImgTop.style.height = "200px";
+        headerImgTop.style.display = "block";
+        header.classList.remove("fixed-header");
+        isHeightReduced = false;
+      }
 
-    // Hide header image and fix the header when scrolling further down
-    if (scrollPosition > headerImgTop.offsetHeight) {
-      header.classList.add('fixed-header');
-      headerImgTop.style.display = 'none';
-    }
+      // Hide header image and fix the header when scrolling further down
+      if (scrollPosition > headerImgTop.offsetHeight) {
+        header.classList.add("fixed-header");
+        headerImgTop.style.display = "none";
+      }
+    });
   });
-});
 </script>
