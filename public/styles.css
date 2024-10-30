@@ -519,50 +519,72 @@ footer {
 /*******************************
 * Reviews & Ratings
 *******************************/
-.movie-reviews {
-  position: absolute;
-  top: 100%; /* Position it right below the card */
-  left: 0;
-  right: 0;
-  background-color: white;
+.reviews-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.review-card {
+  position: relative;
+  background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  opacity: 0;
-  visibility: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   transition: all 0.3s ease;
-  z-index: 10000; /* Ensure it stays above other cards */
-  pointer-events: none;
 }
 
-.movie-reviews.show {
-  position: static;
-  opacity: 1;
-  visibility: visible;
-  height: auto;
-  pointer-events: auto;
-  margin-top: 2rem;
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.featured-movie-card:hover .movie-reviews {
-  opacity: 1;
-  visibility: visible;
-  height: auto;
-  transform: translateY(0);
-  z-index: 10000;
+.review-quote {
+  position: relative;
+  padding-left: 2rem;
 }
 
-.rating-div {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  color: goldenrod;
+.review-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+  font-size: 3rem;
+  color: #e5e7eb;
+  font-family: serif;
+  line-height: 1;
 }
 
-.featured-movie-score {
-  font-weight: bold;
+.review-text {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
+.reviewer {
+  display: block;
+  text-align: right;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.review-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #3b82f6;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  opacity: 0.75;
+}
 /*******************************
  * Animations & Decorative Elements
  *******************************/
