@@ -20,6 +20,7 @@
       <a href="/random">Random Movie</a>
       <a href="/upcoming">Upcoming Movies</a>
     </div>
+    <button id="dark-mode-toggle" class="toggle-button">Dark Mode</button>
   </div>
 </header>
 
@@ -46,4 +47,34 @@
     }
   });
 });
+
+// Select the toggle button
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Check if dark mode was previously enabled and set initial states
+if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    darkModeToggle.innerText = "Light Mode";  // Set initial button text
+} else {
+    darkModeToggle.innerText = "Dark Mode";   // Set initial button text
+}
+
+// Toggle the dark mode
+darkModeToggle.addEventListener('click', () => {
+    // Check current theme
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    if (isDark) {
+        // Switch to light mode
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        darkModeToggle.innerText = "Dark Mode";
+    } else {
+        // Switch to dark mode
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        darkModeToggle.innerText = "Light Mode";
+    }
+});
+
 </script>
