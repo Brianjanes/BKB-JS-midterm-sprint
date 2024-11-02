@@ -57,13 +57,15 @@
             </iframe>
           </div>
           <% } %> <% if (movie.reviews && movie.reviews.length > 0) { %>
-          <div class="movie-reviews show">
+          <div class="reviews-container">
             <% movie.reviews.forEach((review, index) => { %>
-            <div class="review-item">
-              <p class="review-text">"<%= review %>"</p>
-              <span class="reviewer">
-                - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
-              </span>
+            <div class="review-card">
+              <div class="review-quote">
+                <p class="review-text"><%= review %></p>
+                <span class="reviewer">
+                  - <%= ['CineExpert', 'FilmBuff', 'MovieSage'][index] %>
+                </span>
+              </div>
             </div>
             <% }); %>
           </div>
